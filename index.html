@@ -22,7 +22,7 @@
         <li><strong>Connection type:</strong> выбран <strong>SSH</strong> – это тип соединения, обеспечивающий шифрование всех передаваемых данных (логин, пароль, команды).</li>
        
     </ul>
-    <p>После нажатия кнопки <strong>Open</strong> PuTTY установит TCP-соединение с сервером <code>kubsu-dev.ru:58528</code> и запустит сеанс SSH, запросив  логин (<code>u82457</code>) и пароль. Это первый шаг для выполнения всех последующих команд в лабораторной работе.</p>
+    <p>После нажатия кнопки <strong>Open</strong> PuTTY установит TCP-соединение с сервером <code>kubsu-dev.ru:58528</code> и запустит сеанс SSH, запросив  логин (<code>u82686</code>) и пароль. Это первый шаг для выполнения всех последующих команд в лабораторной работе.</p>
 </div>
             <div class="screenshot">
                 <img src="1.png" alt="Программа PuTTy и данные для подключения к учебному серверу">
@@ -177,7 +177,7 @@
     <div class="subtask">
         <h3>5.1. Подготовка локального репозитория</h3>
         <div class="description">
-            <p>На локальном компьютере была создана папка <code>web_hw1</code>, в которую помещены все скриншоты, сделанные ранее (пункты 1–4), и файл <code>index.html</code> для отчёта.</p>
+            <p>На локальном компьютере была создана папка <code>lAB1</code>, в которую помещены все скриншоты, сделанные ранее (пункты 1–4), и файл <code>index.html</code> для отчёта.</p>
         </div>
         <div class="screenshot">
                 <img src="PUTTY51.png" alt="Создание папки на локальном компьюере и размещение скриншотов и главной страницы">
@@ -215,13 +215,13 @@
     <div class="subtask">
         <h3>5.4. Клонирование репозитория на учебный сервер</h3>
         <div class="command">
-            <strong>Команда на сервере:</strong> <code>git clone git@github.com:Rusificator/web-hw1.git</code>
+            <strong>Команда на сервере:</strong> <code>git clone https://github.com/themisato/Lab1.git</code>
         </div>
         <div class="description">
             <p>На сервере <code>kubsu-dev.ru</code> через SSH был выполнен клон репозитория, что создало локальную копию в домашней директории пользователя.</p>
         </div>
        <div class="screenshot">
-                <img src="PUTTY542.png" alt="Клонирование репозитория на учебный сервер">
+                <img src="13.png" alt="Клонирование репозитория на учебный сервер">
                 <p class="caption">Скриншот 5.4.1: Клонирование репозитория на учебный сервер </p>
             </div>
 
@@ -230,7 +230,7 @@
         </div>
 
             <div class="screenshot">
-                <img src="ssh1.png" alt="Создание папки на учебном сервере для SSH  ключа">
+                <img src="14.png" alt="Создание папки на учебном сервере для SSH  ключа">
                 <p class="caption">Скриншот 5.4.2: Создание папки на учебном сервере для SSH  ключа </p>
             </div>
 
@@ -239,17 +239,17 @@
             
 
             <div class="screenshot">
-                <img src="ssh4.png" alt="Генерация SSH ключа на учебном сервере">
+                <img src="15.png" alt="Генерация SSH ключа на учебном сервере">
                 <p class="caption">Скриншот 5.4.3: Генерация SSH ключа на учебном сервере </p>
             </div>
 
             <div class="screenshot">
-                <img src="ssh5.png" alt="Копирование SSH ключа на учебном сервере">
+                <img src="16.png" alt="Копирование SSH ключа на учебном сервере">
                 <p class="caption">Скриншот 5.4.4: Копирование SSH ключа на учебном сервере </p>
             </div>
 
             <div class="screenshot">
-                <img src="ssh6.png" alt="Добавление SSH ключа на GitHub">
+                <img src="17.png" alt="Добавление SSH ключа на GitHub">
                 <p class="caption">Скриншот 5.4.5: Добавление SSH ключа на GitHub </p>
             </div>
 
@@ -261,15 +261,15 @@
         <h3>5.5. Перенос в каталог www</h3>
         <div class="command">
             <strong>Команды:</strong>
-            <pre><code>mkdir -p ~/www/hw1
-cp -r ~/web-hw1/* ~/www/hw1/
-ls ~/www/hw1/</code></pre>
+            <pre><code>mkdir -p ~/www/LAB1
+cp -r ~/Lab1/* ~/www/LAB1/
+ls ~/www/LAB1/</code></pre>
         </div>
         <div class="description">
-            <p>Создан каталог <code>~/www/hw1</code> (доступный через веб), в него скопированы все файлы из клонированного репозитория. Команда <code>ls</code> подтверждает наличие файлов.</p>
+            <p>Создан каталог <code>~/www/LAB1</code> (доступный через веб), в него скопированы все файлы из клонированного репозитория. Команда <code>ls</code> подтверждает наличие файлов.</p>
         </div>
         <div class="screenshot">
-                <img src="PUTTY55.png" alt="Перенос клона репозитория в каталог www">
+                <img src="18.png" alt="Перенос клона репозитория в каталог www">
                 <p class="caption">Скриншот 5.5: Перенос клона репозитория в каталог www </p>
         </div>
     </div>
@@ -278,10 +278,10 @@ ls ~/www/hw1/</code></pre>
     <div class="subtask">
         <h3>5.6. Проверка доступа к странице</h3>
         <div class="description">
-            <p>В браузере открыт адрес <code>http://u82457.kubsu-dev.ru/hw1/</code&gt;. Страница загрузилась, все скриншоты отображаются корректно, что подтверждает успешное размещение.</p>
+            <p>В браузере открыт адрес <code>http://u82686.kubsu-dev.ru/LAB1/</code&gt;. Страница загрузилась, все скриншоты отображаются корректно, что подтверждает успешное размещение.</p>
         </div>
        <div class="screenshot">
-                <img src="PUTTY56.png" alt=" Проверка доступа к странице">
+                <img src="19.png" alt=" Проверка доступа к странице">
                 <p class="caption">Скриншот 5.6:  Проверка доступа к странице </p>
         </div>
     </div>
@@ -294,28 +294,28 @@ ls ~/www/hw1/</code></pre>
                 <strong>Программа:</strong> FileZilla (протокол SFTP)
             </div>
             <div class="description">
-                <p><strong>Что делает:</strong> Клиент FileZilla устанавливает защищённое соединение по протоколу SFTP с сервером <code>kubsu-dev.ru</code> (порт YYYYY) под логином u82457. После подключения файлы из каталога <code>~/www/hw1</code> были скопированы на локальный компьютер.</p>
+                <p><strong>Что делает:</strong> Клиент FileZilla устанавливает защищённое соединение по протоколу SFTP с сервером <code>kubsu-dev.ru</code> (порт YYYYY) под логином u82686. После подключения файлы из каталога <code>~/www/LAB1</code> были скопированы на локальный компьютер.</p>
                 <p><strong>Результат:</strong> На локальной машине появились все файлы отчёта(скриншоты и index.html), что подтверждает скриншот интерфейса FileZilla.</p>
             </div>
             <div class="screenshot">
-                <img src="PUTTY6.png" alt="FileZilla после скачивания">
+                <img src="20.png" alt="FileZilla после скачивания">
                 <p class="caption">Скриншот 6.1: FileZilla – установка соединения</p>
             </div>
             <div class="screenshot">
-                <img src="PUTTY61.png" alt="FileZilla после скачивания">
+                <img src="21.png" alt="FileZilla после скачивания">
                 <p class="caption">Скриншот 6.2: FileZilla – успешное подключение к серверу</p>
             </div>
             <div class="screenshot">
-                <img src="PUTTY62.png" alt="FileZilla после скачивания">
+                <img src="22.png" alt="FileZilla после скачивания">
                 <p class="caption">Скриншот 6.3: FileZilla – начало скачивания(передачи) файлов с учебного сервера на локальный компьютер</p>
             </div>
              <div class="screenshot">
-                <img src="PUTTY63.png" alt="FileZilla после скачивания">
+                <img src="23.png" alt="FileZilla после скачивания">
                 <p class="caption">Скриншот 6.4: FileZilla – передача завершена</p>
             </div>
 
              <div class="description">
-            <p>После того как сделал скриншоты в FileZilla подгрузил их на гит, затем на учебном сервере обновил репозиторий гита</p>
+            <p>После того как сделали скриншоты в FileZilla подгрузили их на гит, затем на учебном сервере обновили репозиторий гита</p>
         </div>
 
              <div class="screenshot">
