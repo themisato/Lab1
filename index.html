@@ -1,0 +1,333 @@
+<html lang="ru">
+    <head>
+    <meta charset="UTF-8">
+    <title>ЛАБА1</title>
+    <link rel="stylesheet" href="style.css">
+<style type="text/css" id="operaUserStyle"></style>
+</head>
+<body>
+    <div class="container">
+        <h1>Отчёт по лабораторной работе №1</h1>
+       
+        <section class="task">
+            <h2>Пункт 1. Подключение к серверу с помощью PuTTy</h2>
+             <div class="description">
+    <p>
+        <strong>Что происходит:</strong> На скриншоте изображено окно настройки программы
+        <strong>PuTTY</strong> 
+        для подключения к учебному серверу по протоколу <strong>SSH</strong> (Secure Shell).</p>
+    <ul>
+        <li><strong>Host Name (или IP-адрес):</strong> <code>kubsu-dev.ru</code> – доменное имя сервера, к которому мы подключаемся.</li>
+        <li><strong>Port:</strong> <code>58528</code> – нестандартный порт, выданный преподавателем (по умолчанию SSH использует порт 22).</li>
+        <li><strong>Connection type:</strong> выбран <strong>SSH</strong> – это тип соединения, обеспечивающий шифрование всех передаваемых данных (логин, пароль, команды).</li>
+       
+    </ul>
+    <p>После нажатия кнопки <strong>Open</strong> PuTTY установит TCP-соединение с сервером <code>kubsu-dev.ru:58528</code> и запустит сеанс SSH, запросив  логин (<code>u82457</code>) и пароль. Это первый шаг для выполнения всех последующих команд в лабораторной работе.</p>
+</div>
+            <div class="screenshot">
+                <img src="1.png" alt="Программа PuTTy и данные для подключения к учебному серверу">
+                <p class="caption">Скриншот 1.1: Программа PuTTy и данные для подключения к учебному серверу </p>
+            </div>
+
+ <div class="description">
+                
+                <p><strong>Результат:</strong> Успешно открылась консоль Putty, позволяющая взаимодейсвовать с учебным сервером. Скриншот запечатлел момент после успешного входа на учебный сервер по SSH. Здесь показан процесс аутентификации и приветственное сообщение системы.</p>
+    <ul>
+        <li><strong>Строка входа:</strong> пользователь ввёл логин <code>u82686</code>, затем система запросила пароль (сам пароль не отображается в целях безопасности). После ввода правильного пароля доступ был предоставлен.</li>
+       
+        <li><strong>Приглашение командной строки:</strong> внизу видна строка <code>u82686@web-server:~$</code> – это означает, что пользователь <code>u82686</code> работает на сервере <code>web-server</code>, текущий каталог — домашний (<code>~</code>), и система ожидает ввода команд.</li>
+    </ul>
+    <p>Таким образом, скриншот подтверждает, что соединение с сервером установлено, аутентификация пройдена, и пользователь готов к выполнению дальнейших заданий (ping, nslookup, whois и т.д.).</p>
+</div>
+
+            <div class="screenshot">
+                <img src="2.png" alt="Консоль PuTTy после успешной авторизации">
+                <p class="caption">Скриншот 1.2: Консоль PuTTy после успешной авторизации </p>
+            </div>
+        </section>
+
+        
+        <section class="task">
+            <h2>Пункт 2. Определение IP-адреса веб-сервера kubsu.ru</h2>
+            <div class="command">
+                <strong>Команда:</strong> <code>ping -c 4 kubsu.ru</code>
+            </div>
+            <div class="description">
+                <p><strong>Что делает:</strong> Утилита <code>ping</code> отправляет ICMP-запросы на указанный узел и измеряет время ответа. Опция <code>-c 4</code> ограничивает количество запросов четырьмя.</p>
+                <p><strong>Результат:</strong> В первой строке вывода виден IP-адрес сервера <strong>185.13.84.92</strong>. Все 4 пакета успешно дошли (потеря 0%), среднее время ответа составило <strong>1.035 мс</strong>.</p>
+            </div>
+            <div class="screenshot">
+                <img src="3.png" alt="Результат ping kubsu.ru">
+                <p class="caption">Скриншот 2: ping kubsu.ru (файл PUTTY2.png)</p>
+            </div>
+        </section>
+
+        <!-- Пункт 3.1: A-запись kubsu.ru -->
+        <section
+        class="task">
+            <h2>Пункт 3.1. A-запись домена kubsu.ru</h2>
+            <div class="command">
+                <strong>Команда:</strong> <code>nslookup -type=A kubsu.ru</code>
+            </div>
+            <div class="description">
+                <p><strong>Что делает:</strong> Запрашивает у DNS-сервера адресную запись (A-запись) для домена, которая связывает имя с IPv4-адресом.</p>
+                <p><strong>Результат:</strong> Домену <strong>kubsu.ru</strong> соответствует IP-адрес <strong>185.13.84.92</strong> (неавторитативный ответ, но корректный).</p>
+            </div>
+            <div class="screenshot">
+                <img src="4.png" alt="A-запись kubsu.ru">
+                <p class="caption">Скриншот 3.1: nslookup A kubsu.ru (файл PUTTY31.png, вторая команда)</p>
+            </div>
+        </section>
+
+        <!-- Пункт 3.2: MX-запись kubsu.ru -->
+        <section class="task">
+            <h2>Пункт 3.2. MX-запись домена kubsu.ru</h2>
+            <div class="command">
+                <strong>Команда:</strong> <code>nslookup -type=MX kubsu.ru</code>
+            </div>
+            <div class="description">
+                <p><strong>Что делает:</strong> Запрашивает MX-записи домена — они указывают, какие почтовые серверы обслуживают домен и с каким приоритетом (чем меньше число, тем выше приоритет).</p>
+                <p><strong>Результат:</strong> Для <strong>kubsu.ru</strong> получены три почтовых сервера:</p>
+                <ul>
+                    <li>приоритет 10: <strong>mx2.kubannet.ru</strong></li>
+                    <li>приоритет 20: <strong>mx.kubannet.ru</strong></li>
+                    <li>приоритет 50: <strong>mx.kubsu.ru</strong></li>
+                </ul>
+                <p>Основной почтовый сервер — с наименьшим приоритетом (10).</p>
+            </div>
+            <div class="screenshot">
+                <img src="5.png" alt="MX-запись kubsu.ru">
+                <p class="caption">Скриншот 3.2: nslookup MX kubsu.ru (файл PUTTY32.png, нижняя часть)</p>
+            </div>
+        </section>
+
+        <!-- Пункт 3.3: A-запись kubsu-dev.ru -->
+        <section class="task">
+            <h2>Пункт 3.3. A-запись домена kubsu-dev.ru</h2>
+            <div class="command">
+                <strong>Команда:</strong> <code>nslookup -type=A kubsu-dev.ru</code>
+            </div>
+            <div class="description">
+                <p><strong>Что делает:</strong> Запрос A-записи для домена kubsu-dev.ru.</p>
+                <p><strong>Результат:</strong> Домену <strong>kubsu-dev.ru</strong> соответствует IP-адрес <strong>212.192.134.135</strong>.</p>
+            </div>
+            <div class="screenshot">
+                <img src="6.png" alt="A-запись kubsu-dev.ru">
+                <p class="caption">Скриншот 3.3: nslookup A kubsu-dev.ru (файл PUTTY33.png, третья команда сверху)</p>
+            </div>
+        </section>
+
+        <!-- Пункт 3.4: MX-запись kubsu-dev.ru -->
+        <section class="task">
+            <h2>Пункт 3.4. MX-запись домена kubsu-dev.ru</h2>
+            <div class="command">
+                <strong>Команда:</strong> <code>nslookup -type=MX kubsu-dev.ru</code>
+            </div>
+            <div class="description">
+                <p><strong>Что делает:</strong> Запрос MX-записей для kubsu-dev.ru.</p>
+                <p><strong>Результат:</strong> Для домена <strong>kubsu-dev.ru</strong> не найдено MX-записей (ответ "No answer"). Это означает, что домен не имеет собственных почтовых серверов. Однако в авторитативном ответе указаны DNS-серверы, обслуживающие домен:</p>
+                <ul>
+                    <li>origin: <strong>nsl.nameself.com</strong></li>
+                    <li>mail addr: <strong>support.regtime.net</strong></li>
+                </ul>
+            </div>
+            <div class="screenshot">
+                <img src="7.png" alt="MX-запись kubsu-dev.ru">
+                <p class="caption">Скриншот 3.4: nslookup MX kubsu-dev.ru (файл PUTTY34.png)</p>
+                </div>
+        </section>
+
+        <!-- Пункт 4.1: whois kubsu.ru -->
+        <section class="task">
+            <h2>Пункт 4.1. Дата регистрации домена kubsu.ru</h2>
+            <div class="command">
+                <strong>Команда:</strong> <code>whois kubsu.ru</code>
+            </div>
+            <div class="description">
+                <p><strong>Что делает:</strong> Утилита <code>whois</code> запрашивает регистрационные данные домена из базы данных регистратора.</p>
+                <p><strong>Результат:</strong> В выводе найдена строка <strong>created: 1998-03-28T12:18:30Z</strong>. Это означает, что домен <strong>kubsu.ru</strong> зарегистрирован <strong>28 марта 1998 года</strong>. Срок действия оплачен до <strong>30 апреля 2026 года</strong>.</p>
+            </div>
+            <div class="screenshot">
+                <img src="8.png" alt="whois kubsu.ru">
+                <p class="caption">Скриншот 4.1: whois для kubsu.ru (файл PUTTY41.png)</p>
+            </div>
+        </section>
+
+        <!-- Пункт 4.2: whois kubsu-dev.ru -->
+        <section class="task">
+            <h2>Пункт 4.2. Дата регистрации домена kubsu-dev.ru</h2>
+            <div class="command">
+                <strong>Команда:</strong> <code>whois kubsu-dev.ru</code>
+            </div>
+            <div class="description">
+                <p><strong>Что делает:</strong> Запрос регистрационных данных для kubsu-dev.ru.</p>
+                <p><strong>Результат:</strong> Домен <strong>kubsu-dev.ru</strong> зарегистрирован <strong>12 февраля 2020 года</strong> (строка <code>created: 2020-02-12T15:55:06Z</code>). Срок действия оплачен до <strong>12 февраля 2027 года</strong>.</p>
+            </div>
+            <div class="screenshot">
+                <img src="9.png" alt="whois kubsu-dev.ru">
+                <p class="caption">Скриншот 4.2: whois для kubsu-dev.ru (файл PUTTY42.png)</p>
+            </div>
+        </section>
+
+        <!-- Пункт 5 -->
+<section class="task">
+    <h2>Пункт 5. Создание веб-страницы и размещение в git-репозитории</h2>
+
+    <!-- 5.1 -->
+    <div class="subtask">
+        <h3>5.1. Подготовка локального репозитория</h3>
+        <div class="description">
+            <p>На локальном компьютере была создана папка <code>web_hw1</code>, в которую помещены все скриншоты, сделанные ранее (пункты 1–4), и файл <code>index.html</code> для отчёта.</p>
+        </div>
+        <div class="screenshot">
+                <img src="PUTTY51.png" alt="Создание папки на локальном компьюере и размещение скриншотов и главной страницы">
+                <p class="caption">Скриншот 5.1: Создание папки на локальном компьюере и размещщение скриншотов и главной страницы</p>
+            </div>
+    </div>
+
+    <!-- 5.2 -->
+    <div class="subtask">
+        <h3>5.2. Создание файла index.html</h3>
+        <div class="description">
+            <p>Был создан файл <code>index.html</code> с базовой структурой HTML, включающей заголовки и ссылки на все скриншоты.</p>
+        </div>
+       <div class="screenshot">
+                <img src="11.png" alt="Создание структуры файла index.html">
+                <p class="caption">Скриншот 5.2: Создание структуры файла index.html и размещение скриншотов на странице </p>
+            </div>
+    </div>
+
+    <!-- 5.3 -->
+    <div class="subtask">
+        <h3>5.3. Инициализация git-репозитория и загрузка на GitHub</h3>
+    
+        <div class="description">
+            <p>Репозиторий был инициализирован, все файлы добавлены, создан первый коммит, установлена связь с удалённым репозиторием на GitHub, и изменения отправлены.</p>
+        </div>
+        <div class="screenshot">
+                <img src="12.png" alt="Инициализация
+                git-репозитория и загрузка на GitHub">
+                <p class="caption">Скриншот 5.3: Инициализация git-репозитория и загрузка на GitHub </p>
+            </div>
+    </div>
+
+    <!-- 5.4 -->
+    <div class="subtask">
+        <h3>5.4. Клонирование репозитория на учебный сервер</h3>
+        <div class="command">
+            <strong>Команда на сервере:</strong> <code>git clone git@github.com:Rusificator/web-hw1.git</code>
+        </div>
+        <div class="description">
+            <p>На сервере <code>kubsu-dev.ru</code> через SSH был выполнен клон репозитория, что создало локальную копию в домашней директории пользователя.</p>
+        </div>
+       <div class="screenshot">
+                <img src="PUTTY542.png" alt="Клонирование репозитория на учебный сервер">
+                <p class="caption">Скриншот 5.4.1: Клонирование репозитория на учебный сервер </p>
+            </div>
+
+ <div class="description">
+            <p>Собственно говоря, сам процесс подключения ssh ключа для учебного сервера:</p>
+        </div>
+
+            <div class="screenshot">
+                <img src="ssh1.png" alt="Создание папки на учебном сервере для SSH  ключа">
+                <p class="caption">Скриншот 5.4.2: Создание папки на учебном сервере для SSH  ключа </p>
+            </div>
+
+           
+
+            
+
+            <div class="screenshot">
+                <img src="ssh4.png" alt="Генерация SSH ключа на учебном сервере">
+                <p class="caption">Скриншот 5.4.3: Генерация SSH ключа на учебном сервере </p>
+            </div>
+
+            <div class="screenshot">
+                <img src="ssh5.png" alt="Копирование SSH ключа на учебном сервере">
+                <p class="caption">Скриншот 5.4.4: Копирование SSH ключа на учебном сервере </p>
+            </div>
+
+            <div class="screenshot">
+                <img src="ssh6.png" alt="Добавление SSH ключа на GitHub">
+                <p class="caption">Скриншот 5.4.5: Добавление SSH ключа на GitHub </p>
+            </div>
+
+        
+    </div>
+
+    <!-- 5.5 -->
+    <div class="subtask">
+        <h3>5.5. Перенос в каталог www</h3>
+        <div class="command">
+            <strong>Команды:</strong>
+            <pre><code>mkdir -p ~/www/hw1
+cp -r ~/web-hw1/* ~/www/hw1/
+ls ~/www/hw1/</code></pre>
+        </div>
+        <div class="description">
+            <p>Создан каталог <code>~/www/hw1</code> (доступный через веб), в него скопированы все файлы из клонированного репозитория. Команда <code>ls</code> подтверждает наличие файлов.</p>
+        </div>
+        <div class="screenshot">
+                <img src="PUTTY55.png" alt="Перенос клона репозитория в каталог www">
+                <p class="caption">Скриншот 5.5: Перенос клона репозитория в каталог www </p>
+        </div>
+    </div>
+
+    <!-- 5.6 -->
+    <div class="subtask">
+        <h3>5.6. Проверка доступа к странице</h3>
+        <div class="description">
+            <p>В браузере открыт адрес <code>http://u82457.kubsu-dev.ru/hw1/</code&gt;. Страница загрузилась, все скриншоты отображаются корректно, что подтверждает успешное размещение.</p>
+        </div>
+       <div class="screenshot">
+                <img src="PUTTY56.png" alt=" Проверка доступа к странице">
+                <p class="caption">Скриншот 5.6:  Проверка доступа к странице </p>
+        </div>
+    </div>
+</section>
+
+        <!-- Пункт 6: SFTP -->
+        <section class="task">
+            <h2>Пункт 6. Копирование файлов через SFTP</h2>
+            <div class="command">
+                <strong>Программа:</strong> FileZilla (протокол SFTP)
+            </div>
+            <div class="description">
+                <p><strong>Что делает:</strong> Клиент FileZilla устанавливает защищённое соединение по протоколу SFTP с сервером <code>kubsu-dev.ru</code> (порт YYYYY) под логином u82457. После подключения файлы из каталога <code>~/www/hw1</code> были скопированы на локальный компьютер.</p>
+                <p><strong>Результат:</strong> На локальной машине появились все файлы отчёта(скриншоты и index.html), что подтверждает скриншот интерфейса FileZilla.</p>
+            </div>
+            <div class="screenshot">
+                <img src="PUTTY6.png" alt="FileZilla после скачивания">
+                <p class="caption">Скриншот 6.1: FileZilla – установка соединения</p>
+            </div>
+            <div class="screenshot">
+                <img src="PUTTY61.png" alt="FileZilla после скачивания">
+                <p class="caption">Скриншот 6.2: FileZilla – успешное подключение к серверу</p>
+            </div>
+            <div class="screenshot">
+                <img src="PUTTY62.png" alt="FileZilla после скачивания">
+                <p class="caption">Скриншот 6.3: FileZilla – начало скачивания(передачи) файлов с учебного сервера на локальный компьютер</p>
+            </div>
+             <div class="screenshot">
+                <img src="PUTTY63.png" alt="FileZilla после скачивания">
+                <p class="caption">Скриншот 6.4: FileZilla – передача завершена</p>
+            </div>
+
+             <div class="description">
+            <p>После того как сделал скриншоты в FileZilla подгрузил их на гит, затем на учебном сервере обновил репозиторий гита</p>
+        </div>
+
+             <div class="screenshot">
+                <img src="PUTTY7.png" alt="Добавление скринов с FileZilla в Git hub">
+                <p class="caption">Скриншот 6.5: Добавление скринов с FileZilla в Git hub</p>
+            </div>
+             <div class="screenshot">
+                <img src="PUTTY77.png" alt="Обновление главной страницы на учебном сервере(гит репозитория)">
+                <p class="caption">Скриншот 6.6: Обновление главной страницы на учебном сервере(гит репозитория)</p>
+            </div>
+
+        </section>
+    </div>
+
+</body></html>
